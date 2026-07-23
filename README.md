@@ -12,9 +12,38 @@ Currently, there is no Bloom markup language, no `effect`, no `computed` (memoiz
 
 ## Docs
 
-### Signal
+### Signals
 
 A signal is a way to get and set reactive values; this is similar to `useState` in React.
+
+Unlike react, you don't have a seperate values for get and set; instead, you get one function that does both:
+
+```typescript
+const name = signal();
+
+// Set the state
+name("Adam");
+
+// Get the state
+name();
+```
+
+Generics, objects, and default values also work:
+
+```typescript
+type Human = {
+	name: string;
+	age: number;
+};
+
+const human = signal<Human>({
+	name: "Maytham",
+	age: 19,
+});
+
+// Type error!
+human("not a human");
+```
 
 ## Examples
 

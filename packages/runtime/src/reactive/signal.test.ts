@@ -61,3 +61,23 @@ test("holds functions as values", () => {
 	const s = signal(fn as any);
 	expect(s()).toBe(fn);
 });
+
+test("can hold object with generic type and default value", () => {
+	type Human = { name: string; age: number };
+	const human = signal<Human>({ name: "Maytham", age: 19 });
+
+	expect(human()).toEqual({
+		name: "Maytham",
+		age: 19,
+	});
+
+	human({
+		name: "Joseph M.",
+		age: 19,
+	});
+
+	expect(human()).toEqual({
+		name: "Joseph M.",
+		age: 19,
+	});
+});
