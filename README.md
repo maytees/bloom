@@ -1,15 +1,21 @@
-# bloom
+# Bloom
 
-To install dependencies:
+A simple frontend library.
 
-```bash
-bun install
-```
+## Ethos
 
-To run:
+Bloom is a signals-based component language that compiles to TypeScript — building UIs without the < and >. A project for learning how frameworks work.
 
-```bash
-bun run index.ts
-```
+## Current State
 
-This project was created using `bun init` in bun v1.3.2. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Currently, there is no Bloom markup language, no `effect`, no `computed` (memoization), etc. There is only a `signal` (state)
+
+## Docs
+
+### Signal
+
+A signal is a way to get and set reactive values; this is similar to `useState` in React.
+
+## Examples
+
+See the `/examples` folder to see what the Bloom markup (similar to jsx) should look like.

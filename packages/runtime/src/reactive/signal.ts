@@ -1,10 +1,12 @@
 import type { Signal } from "../types";
 
-export function signal<T>(defaultValue?: T): Signal<typeof defaultValue> {
+export function signal<T = undefined>(defaultValue?: T): Signal<T> {
 	let value = defaultValue;
 
-	return [
-		(): typeof defaultValue => { return value },
-		(newValue: typeof defaultValue): void => { value = newValue }
-	]
+	return (...args: T[]) => {
+		if (args.length === 0) return value;
+		value = args[0];
+
+		// TODO: notify effects
+	};
 }
