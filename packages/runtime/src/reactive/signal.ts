@@ -10,3 +10,6 @@ export function signal<T = undefined>(defaultValue?: T): Signal<T> {
 		// TODO: notify effects
 	};
 }
+
+// Shorthand alias for signals
+export const $ = signal;

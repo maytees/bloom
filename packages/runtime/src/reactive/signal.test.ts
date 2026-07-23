@@ -1,9 +1,14 @@
 import { expect, test } from "bun:test";
-import { signal } from "./signal";
+import { $, signal } from "./signal";
 
 test("simple signal", () => {
 	const name = signal();
 	expect(name()).toBeUndefined();
+});
+
+test("$ alias for a signal", () => {
+	const num = $(5);
+	expect(num()).toBe(5);
 });
 
 test("signal with default value", () => {

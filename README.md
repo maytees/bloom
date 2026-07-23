@@ -45,6 +45,13 @@ const human = signal<Human>({
 human("not a human");
 ```
 
+You can also use a dollar sign `$` as a shorthand for creating a signal:
+
+```typescript
+const num = $(5);
+// ^^^ same as cosnt num = signal(5);
+```
+
 ## Examples
 
 See the `/examples` folder to see what the Bloom markup (similar to jsx) should look like.
