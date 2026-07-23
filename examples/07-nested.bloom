@@ -1,0 +1,15 @@
+// Deep nesting, multiple children per block, bare-expression text from props.
+component Card(props: { title: string; body: string }) {
+  article(class: "card") {
+    header(class: "card-head") {
+      h2 { props.title }
+    }
+    div(class: "card-body") {
+      p { props.body }
+    }
+    footer(class: "card-foot") {
+      button(class: "primary") { "Save" }
+      button(class: "ghost") { "Cancel" }
+    }
+  }
+}

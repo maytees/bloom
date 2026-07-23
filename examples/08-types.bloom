@@ -1,0 +1,26 @@
+// TypeScript in the script zone: interface, generics, union types, arrow fns.
+import { signal, type Signal } from "bloom"
+
+component UserPanel {
+  interface User {
+    id: number
+    name: string
+    role: "admin" | "member"
+  }
+
+  let users = signal<User[]>([
+    { id: 1, name: "Ada", role: "admin" },
+    { id: 2, name: "Grace", role: "member" },
+  ])
+
+  const admins = (): User[] => users().filter(u => u.role === "admin")
+
+  section(class: "panel") {
+    h2 { "Admins ({admins().length})" }
+    ul {
+      each user in admins() (key: user.id) {
+        li { user.name }
+      }
+    }
+  }
+}

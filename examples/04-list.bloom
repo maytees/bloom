@@ -1,0 +1,12 @@
+// each loop with a key hint; bare-expression text child.
+import { signal } from "bloom"
+
+component NameList {
+  let names = signal(["Ada", "Alan", "Grace"])
+
+  ul(class: "names") {
+    each name in names() (key: name) {
+      li { name }
+    }
+  }
+}

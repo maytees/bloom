@@ -1,0 +1,7 @@
+// Minimal: a component with static text and nested elements.
+component Hello {
+  div(class: "greeting") {
+    h1 { "Hello, world" }
+    p { "Welcome to Bloom." }
+  }
+}

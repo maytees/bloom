@@ -1,0 +1,20 @@
+// Multiple attributes and events; dynamic class; conditional children.
+import { signal } from "bloom"
+
+component Toggle {
+  let on = signal(false)
+
+  button(
+    class: on() ? "btn on" : "btn off",
+    disabled: false,
+    title: "Click to toggle",
+    onClick: () => on(!on()),
+    onMouseEnter: () => console.log("hover")
+  ) {
+    if on() {
+      span { "ON" }
+    } else {
+      span { "OFF" }
+    }
+  }
+}

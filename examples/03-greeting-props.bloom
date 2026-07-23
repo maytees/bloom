@@ -1,0 +1,10 @@
+// Typed props + conditional + interpolation with a member expression.
+component Greeting(props: { name: string; loggedIn: boolean }) {
+  div(class: "greeting") {
+    if props.loggedIn {
+      h1 { "Welcome back, {props.name}" }
+    } else {
+      h1 { "Please log in" }
+    }
+  }
+}

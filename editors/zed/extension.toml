@@ -1,0 +1,11 @@
+id = "bloom"
+name = "Bloom"
+version = "0.0.1"
+schema_version = 1
+authors = ["Maytham Ajam <maythamajam@gmail.com>"]
+description = "Syntax highlighting for the Bloom component language (.bloom)"
+repository = "https://github.com/maythamajam/bloom-zed"
+
+[grammars.bloom]
+repository = "file:///Users/maythamajam/Workspace/bloom-zed/tree-sitter-bloom"
+commit = "0e8bee1ba0a688f09a20e4c9cc11e8128c88d202"

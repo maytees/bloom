@@ -1,0 +1,22 @@
+// Child component: typed props including a callback, local const, keyed each.
+import { type Signal } from "bloom"
+
+component Footer(props: {
+  remaining: number
+  filter: string
+  onPick: (name: string) => void
+}) {
+  const filters = ["all", "active", "completed"] as const
+
+  footer(class: "bar") {
+    span { "{props.remaining} left" }
+    div(class: "filters") {
+      each name in filters {
+        button(
+          class: props.filter === name ? "chip active" : "chip",
+          onClick: () => props.onPick(name)
+        ) { name }
+      }
+    }
+  }
+}

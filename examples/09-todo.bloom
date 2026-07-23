@@ -1,0 +1,68 @@
+// Kitchen sink: state, derived state, handlers, if/else, keyed each,
+// two-way input, and a child component call with a callback prop.
+import { signal } from "bloom"
+import Footer from "./10-footer.bloom"
+
+component TodoApp {
+  type Todo = { id: number; text: string; done: boolean }
+
+  let todos = signal<Todo[]>([
+    { id: 1, text: "Learn signals", done: true },
+    { id: 2, text: "Build a framework", done: false },
+  ])
+  let filter = signal<"all" | "active" | "completed">("all")
+  let draft  = signal("")
+
+  const visible = (): Todo[] => todos().filter(t =>
+    filter() === "all"    ? true :
+    filter() === "active" ? !t.done : t.done
+  )
+  const remaining = (): number => todos().filter(t => !t.done).length
+
+  function addTodo(): void {
+    const text = draft().trim()
+    if (!text) return
+    todos([...todos(), { id: Date.now(), text, done: false }])
+    draft("")
+  }
+  function toggle(id: number): void {
+    todos(todos().map(t => t.id === id ? { ...t, done: !t.done } : t))
+  }
+  function remove(id: number): void {
+    todos(todos().filter(t => t.id !== id))
+  }
+
+  div(class: "todo-app") {
+    h1 { "Tasks" }
+
+    div(class: "add-row") {
+      input(
+        value: draft,
+        placeholder: "What needs doing?",
+        onInput: (e: InputEvent) => draft((e.target as HTMLInputElement).value),
+        onKeydown: (e: KeyboardEvent) => e.key === "Enter" && addTodo()
+      )
+      button(onClick: addTodo) { "Add" }
+    }
+
+    if visible().length === 0 {
+      p(class: "empty") { "Nothing here." }
+    } else {
+      ul(class: "list") {
+        each todo in visible() (key: todo.id) {
+          li(class: todo.done ? "item done" : "item") {
+            input(type: "checkbox", checked: todo.done, onChange: () => toggle(todo.id))
+            span { todo.text }
+            button(class: "x", onClick: () => remove(todo.id)) { "×" }
+          }
+        }
+      }
+    }
+
+    Footer(
+      remaining: remaining(),
+      filter: filter(),
+      onPick: (name: string) => filter(name as "all" | "active" | "completed")
+    )
+  }
+}

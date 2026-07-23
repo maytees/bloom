@@ -1,0 +1,12 @@
+// if / else if / else chain.
+component Status(props: { code: number }) {
+  div(class: "status") {
+    if props.code === 200 {
+      span(class: "ok") { "Success" }
+    } else if props.code === 404 {
+      span(class: "warn") { "Not found" }
+    } else {
+      span(class: "err") { "Error {props.code}" }
+    }
+  }
+}

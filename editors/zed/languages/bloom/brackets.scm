@@ -1,0 +1,6 @@
+(body "{" @open "}" @close)
+(children "{" @open "}" @close)
+(attributes "(" @open ")" @close)
+(props "(" @open ")" @close)
+(key_hint "(" @open ")" @close)
+(interpolation "{" @open "}" @close)

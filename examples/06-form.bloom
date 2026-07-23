@@ -1,0 +1,27 @@
+// Inputs, two-way binding (value: signal + onInput), typed event handlers.
+import { signal } from "bloom"
+
+component LoginForm {
+  let email = signal("")
+  let password = signal("")
+
+  function submit(): void {
+    console.log(email(), password())
+  }
+
+  form(class: "login") {
+    input(
+      type: "email",
+      value: email,
+      placeholder: "Email",
+      onInput: (e: InputEvent) => email((e.target as HTMLInputElement).value)
+    )
+    input(
+      type: "password",
+      value: password,
+      placeholder: "Password",
+      onInput: (e: InputEvent) => password((e.target as HTMLInputElement).value)
+    )
+    button(onClick: submit) { "Log in" }
+  }
+}
