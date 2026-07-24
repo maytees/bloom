@@ -1,0 +1,24 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bloom Playground</title>
+	</head>
+	<body>
+		<nav>
+			<button data-tab="counter">counter</button>
+			<button data-tab="todo">todo</button>
+		</nav>
+
+		 <section data-panel="counter">
+			<h1>Welcome to my counter app!</h1>
+			<p id="count">Count is: 0</p>
+			<button id="inc">Increment Counter</button>
+			<button id="dec">Decrement Counter</button>
+			<button id="dispose" style="background-color: red">Dispose Effects</button>
+		</section>
+		<section data-panel="todo"></section>
+
+		<script type="module" src="./playground.ts"></script>
+	</body>
+</html>

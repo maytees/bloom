@@ -6,9 +6,21 @@
       "name": "bloom",
       "devDependencies": {
         "@types/bun": "latest",
+        "bloom": "workspace:*",
       },
       "peerDependencies": {
         "typescript": "^5",
+      },
+    },
+    "packages/runtime": {
+      "name": "bloom",
+      "version": "0.0.1",
+    },
+    "playground": {
+      "name": "playground",
+      "version": "0.0.0",
+      "dependencies": {
+        "bloom": "workspace:*",
       },
     },
   },
@@ -17,7 +29,11 @@
 
     "@types/node": ["@types/node@26.1.1", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-nxAkRSVkN1Y0JC1W8ky/fTfkGsMmcrRsbx+3XoZE+rMOX71kLYTV7fLXpqud1GpbpP5TuffXFqfX7fH2GgZREw=="],
 
+    "bloom": ["bloom@workspace:packages/runtime"],
+
     "bun-types": ["bun-types@1.3.14", "", { "dependencies": { "@types/node": "*" } }, "sha512-4N0ig0fEomHt5R0KCFWjovxow98rIoRwKolrYdCcknNwMekCXRnWEUvgu5soYV8QXtVsrUD8B95MBOZGPvr6KQ=="],
+
+    "playground": ["playground@workspace:playground"],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
