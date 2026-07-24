@@ -1,6 +1,9 @@
 # Bloom
 
-A simple frontend library.
+> [!IMPORTANT]  
+> AI was not used to create this project. If a file, or text block is fully or mostly written by AI, the block/file will specify clearly.
+
+A simple _"frontend"_ library.
 
 ## Ethos
 

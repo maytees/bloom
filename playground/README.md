@@ -1,5 +1,8 @@
 # Playground/examples
 
+> [!IMPORTANT]  
+> AI was not used to create this project. If a file, or text block is fully or mostly written by AI, the block/file will specify clearly.
+
 Use this folder to test and mess around with Bloom on an html page.
 
 ## How to use
