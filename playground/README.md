@@ -22,23 +22,24 @@ To add an example, first create a tab in the html file's `<nav>`:
 
 ```html
 <nav>
-			<button data-tab="counter">counter</button>
-			<!-- some more examples -->
-			<button data-tab="my-example">my example</button>
+	<button data-tab="counter">counter</button>
+	<!-- some more examples -->
+	<button data-tab="my-example">my example</button>
 </nav>
 ```
 
 Then, create a section for the tab, ensure `data-panel` is the same as the nav button's `data-tab`:
 
 ```html
-		<section data-panel="my-example">
-			<!-- your example's html -->
-		</section>
+<section data-panel="my-example">
+	<!-- your example's html -->
+</section>
 ```
 
 In `playground.ts`, examples are put in a `init(el: HTMLElement)` based on the `Example` type, this is where your example's code goes. For example:
 
 ```typescript
+// playground.ts
 const myCounter: Example = {
 	init() {
 		const counter = document.getElementById(
@@ -71,6 +72,7 @@ const myCounter: Example = {
 To add the example onto the tabs, simply add it to the examples object. The key is a string of the tab value (e.g `my-example`), and the value is the `Example` object:
 
 ```typescript
+// playground.ts (after all example objects are declared)
 const examples: Record<string, Example> = {
 	counter,
 	"my-example": myExampleObject
