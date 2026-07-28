@@ -13,9 +13,7 @@ Bloom is a signals-based component language that compiles to TypeScript — buil
 
 Currently, there is no Bloom markup language. See below for what Bloom's current capabilties are.
 
-## Docs
-
-### Signals
+## Signals
 
 A signal is a way to get and set reactive values; this is similar to `useState` in React.
 
@@ -55,7 +53,7 @@ const num = $(5);
 // ^^^ same as cosnt num = signal(5);
 ```
 
-### Effect
+## Effect
 
 An effect is a callback function that runs immediately and automatically re runs whenever any signal it reads changes.
 
@@ -90,7 +88,7 @@ disposeNameEffect();
 
 <!-- This section is mostly written by AI, but edited/tweaked by a human (me) -->
 
-### Reactive values must stay lazy
+## Reactive values must stay lazy
 
 A signal is just a function. Calling it via `count()` just reads the value **right now**, synchronously. There's no tracking magic on the read itself; tracking only happens when that read occurs _inside_ something that re runs later, like an `effect()` (or the effects `el()` sets up internally for reactive props).
 
@@ -121,7 +119,7 @@ So, stay in the habit of wraping reactive values in closures. Be aware that _you
 
 Now we get into actually creating elements and modifying them. Currently, `mount()`, and `insert()`, don't have much functionality and just have a basic implementation for the sake of testing `el()`.
 
-#### Creating elements
+### Creating elements
 
 You can create an element using the `el()` function:
 
