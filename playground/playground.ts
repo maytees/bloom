@@ -1,4 +1,6 @@
-import { effect, signal } from "bloom";
+import { effect, el, insert, mount, signal } from "bloom";
+import { $dc } from "bloom/utils";
+import { shuffleString } from "./util";
 
 type Example = {
 	init: (el: HTMLElement) => void;
@@ -57,7 +59,40 @@ const todo: Example = {
 	},
 };
 
-const examples: Record<string, Example> = { counter, todo };
+const elExample: Example = {
+	init(sectionElement) {
+		const isRed = signal(true);
+		const ariaLabel = signal<string>("this is an aria label");
+
+		const someElement = el("p", {
+			"aria-label": ariaLabel,
+			// class: () => (isRed() ? "isRed" : ""),
+			class: $dc("base", {
+				isRed: isRed,
+				"another case": () => isRed() === false,
+				"another thing": () => isRed(),
+			}),
+			onClick: () => {
+				console.log(`${isRed()} was read`);
+				isRed(!isRed());
+			},
+		});
+		insert(someElement, "This paragraph is made by Bloom!");
+
+		const ariaLabelButton = el("button");
+		insert(ariaLabelButton, "Change aria label");
+
+		ariaLabelButton.addEventListener("click", () => {
+			isRed(!isRed());
+			// ariaLabel(shuffleString(ariaLabel()));
+		});
+
+		mount(someElement, sectionElement.id);
+		mount(ariaLabelButton, sectionElement.id);
+	},
+};
+
+const examples: Record<string, Example> = { counter, todo, elExample };
 
 function showTab(name: string) {
 	document.querySelectorAll<HTMLElement>("[data-panel]").forEach((panel) => {

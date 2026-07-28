@@ -2,12 +2,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./global.css">
 		<title>Bloom Playground</title>
 	</head>
 	<body>
 		<nav>
 			<button data-tab="counter">counter</button>
 			<button data-tab="todo">todo</button>
+			<button data-tab="elExample">el()</button>
 		</nav>
 
 		 <section data-panel="counter">
@@ -18,6 +20,7 @@
 			<button id="dispose" style="background-color: red">Dispose Effects</button>
 		</section>
 		<section data-panel="todo"></section>
+		<section id="elExampleMount" data-panel="elExample"></section>
 
 		<script type="module" src="./playground.ts"></script>
 	</body>
