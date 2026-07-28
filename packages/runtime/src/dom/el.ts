@@ -1,6 +1,5 @@
 import { effect } from "../reactive/effect";
 import type { IntrinsicElements } from "../types";
-import { dynamicClass } from "../utils";
 
 export function el<K extends keyof IntrinsicElements>(
 	tag: K,
@@ -20,14 +19,6 @@ export function el<K extends keyof IntrinsicElements>(
 		) {
 			const eventName = key.slice(2).toLowerCase();
 			element.addEventListener(eventName, value);
-			continue;
-		}
-
-		if (key === "class" && typeof value !== "string") {
-			effect(() => {
-				const evalValue = value();
-				element.setAttribute("class", evalValue);
-			});
 			continue;
 		}
 
