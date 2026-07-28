@@ -31,4 +31,4 @@ export const dynamicClass = (
 	};
 };
 
-export const $dc = dynamicClass;
+export const $c = dynamicClass;

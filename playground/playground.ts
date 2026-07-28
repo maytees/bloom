@@ -1,5 +1,5 @@
 import { effect, el, insert, mount, signal } from "bloom";
-import { $dc } from "bloom/utils";
+import { $c } from "bloom/utils";
 import { shuffleString } from "./util";
 
 type Example = {
@@ -65,9 +65,9 @@ const elExample: Example = {
 		const ariaLabel = signal<string>("this is an aria label");
 
 		const someElement = el("p", {
-			"aria-label": ariaLabel,
+			"aria-label": () => ariaLabel(),
 			// class: () => (isRed() ? "isRed" : ""),
-			class: $dc("base", {
+			class: $c("base", {
 				isRed: isRed,
 				"another case": () => isRed() === false,
 				"another thing": () => isRed(),
@@ -84,7 +84,7 @@ const elExample: Example = {
 
 		ariaLabelButton.addEventListener("click", () => {
 			isRed(!isRed());
-			// ariaLabel(shuffleString(ariaLabel()));
+			ariaLabel(shuffleString(ariaLabel()));
 		});
 
 		mount(someElement, sectionElement.id);
