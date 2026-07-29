@@ -18,6 +18,7 @@ A simple _"frontend"_ library.
   - [Creating elements](#creating-elements)
     - [Dynamic Classes](#dynamic-classes)
 - [Playground vs Examples](#playground-vs-examples)
+- [Using Tailwind](#using-tailwind)
 
 ## Ethos
 
@@ -190,3 +191,76 @@ el("button", {
 To see the playground, go to the [folder's readme](https://github.com/maytees/bloom/tree/master/playground) to view instructions. These playground examples will most likely be on a website sooner or later.
 
 On the other hand, see the `/examples` folder to see what the Bloom markup (similar to jsx) should look like in the future if things go to plan. As of right now, this is just a concept, it doesn't work.
+
+<!-- This section is written by AI -->
+
+## Using Tailwind
+
+Bloom doesn't ship any styling, so Tailwind works the same way it would in any
+vanilla TypeScript project — you just pass class names through `el()`.
+
+```ts
+import { el, insert, mount } from "bloom";
+
+const heading = el("h1", { class: "text-3xl font-bold" });
+insert(heading, "hello world");
+mount(heading, "app");
+```
+
+### Setup
+
+```bash
+bun add -d tailwindcss @tailwindcss/cli
+```
+
+Create an input stylesheet:
+
+```css
+/* input.css */
+@import "tailwindcss";
+```
+
+Generate the output CSS, and link `output.css` in your HTML:
+
+```bash
+bunx @tailwindcss/cli -i input.css -o output.css --watch
+```
+
+### Editor autocomplete
+
+Tailwind's language server only looks for `class="..."` by default. Since Bloom
+passes classes as an object property (`class: "..."`), you need to tell it about
+that pattern.
+
+**Zed** — add this to `.zed/settings.json` (or `global settings.json`):
+
+```json
+{
+	"languages": {
+		"TypeScript": {
+			"language_servers": ["tailwindcss-language-server", "..."]
+		}
+	},
+	"lsp": {
+		"tailwindcss-language-server": {
+			"settings": {
+				"classFunctions": ["dynamicClass", "$dc"],
+				"experimental": {
+					"classRegex": ["class:\\s*[\"']([^\"']*)[\"']"]
+				}
+			}
+		}
+	}
+}
+```
+
+**VSCode** - Coming soon...
+
+`classFunctions` adds completion inside `dynamicClass()` / `$dc()` calls.
+
+If completions don't appear, check that the language server actually started —
+it only activates when it finds a CSS file containing `@import "tailwindcss"`.
+Restart it with `editor: restart language server` after changing settings.
+
+> **Note:** this only covers `.ts` files. Tailwind support inside `.bloom` files
+> isn't included here yet — that'll come once the Bloom markup language exists.

@@ -1,0 +1,17 @@
+{
+	"languages": {
+		"TypeScript": {
+			"language_servers": ["tailwindcss-language-server", "..."],
+		},
+	},
+	"lsp": {
+		"tailwindcss-language-server": {
+			"settings": {
+				"classFunctions": ["dynamicClass", "$dc"],
+				"experimental": {
+					"classRegex": ["class:\\s*[\"']([^\"']*)[\"']"],
+				},
+			},
+		},
+	},
+}
