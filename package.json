@@ -7,7 +7,7 @@
 		"playground": "bun playground/index.html",
 		"site:dev": "bun www/index.html www/playground/index.html www/docs/index.html www/docs/signals/index.html www/docs/effect/index.html www/docs/reactivity/index.html www/docs/dom/index.html www/docs/classes/index.html",
 		"site:css": "bunx @tailwindcss/cli -i www/styles.css -o www/output.css --watch",
-		"site:build": "bunx @tailwindcss/cli www/playground/index.html -i www/styles.css -o www/output.css --minify && bun build ./www/index.html ./www/docs/index.html ./www/docs/signals/index.html ./www/docs/effect/index.html ./www/docs/reactivity/index.html ./www/docs/dom/index.html ./www/docs/classes/index.html --outdir=dist --minify --css-chunking"
+		"site:build": "bunx @tailwindcss/cli -i www/styles.css -o www/output.css --minify && bun build ./www/index.html ./www/playground/index.html ./www/docs/index.html ./www/docs/signals/index.html ./www/docs/effect/index.html ./www/docs/reactivity/index.html ./www/docs/dom/index.html ./www/docs/classes/index.html --outdir=dist --minify --css-chunking"
 	},
 	"devDependencies": {
 		"@happy-dom/global-registrator": "^20.11.1",
